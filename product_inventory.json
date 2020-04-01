@@ -1,0 +1,115 @@
+{
+  "template": "products",
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "default": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "snowball"
+          ]
+        },
+        "search_assist" : {
+          "type" : "custom",
+          "tokenizer" : "keyword",
+          "filter": [
+            "snowball",
+            "trim"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "product": {
+      "properties": {
+        "id": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "price": {
+          "type": "double"
+        },
+        "available": {
+          "type": "boolean"
+        },
+        "dateCreated": {
+          "type": "date"
+        },
+        "dateUpdated": {
+          "type": "date"
+        },
+        "brand": {
+          "type": "string",
+          "copy_to": "keywords",
+          "index": "not_analyzed"
+          "fields": {
+            "search": {
+              "type": "string",
+              "analyzer": "search_assist"
+            }
+          }
+        },
+        "category": {
+          "type": "string",
+          "copy_to": "keywords",
+          "index": "not_analyzed",
+          "fields": {
+            "search": {
+              "type": "string",
+              "analyzer": "search_assist"
+            }
+          }
+        },
+        "name": {
+          "type": "string",
+          "fields": {
+            "exact": {
+              "type": "string",
+              "analyzer": "search_assist"
+            }
+          }
+        },
+        "description": {
+          "type": "string",
+          "fields": {
+            "exact": {
+              "type": "string",
+              "analyzer": "no_stemming"
+            }
+          }
+        },
+        "price": {
+          "type": "double"
+        },
+        "thumbnail": {
+          "properties": {
+            "originalUrl": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "mediumKey": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": true
+            },
+            "largeKey": {
+              "type": "string",
+              "index": "not_analyzed",
+              "doc_values": true
+            },
+            "valid": {
+              "type": "boolean",
+              "doc_values": true
+            }
+          }
+        },
+        "valid": {
+          "type": "boolean",
+          "doc_values": true
+        }
+      }
+    }
+  }
+}
