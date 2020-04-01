@@ -40,4 +40,4 @@ CREATE TABLE `access_grants` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+)CHARSET=utf8 COLLATE=utf8_unicode_ci;
